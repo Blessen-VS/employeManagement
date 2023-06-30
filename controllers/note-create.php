@@ -7,6 +7,7 @@ $heading = "Create Employee";
 //$notes = $db->query("select * from notes where id= :id", ['id' => $id])->fetchAll();
 
  if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    
     $email = $_POST['email'];
 
     $isUserExist = $db->query("SELECT email FROM users WHERE email='$email'");
