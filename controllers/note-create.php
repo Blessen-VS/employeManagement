@@ -7,15 +7,24 @@ $heading = "Create Employee";
 //$notes = $db->query("select * from notes where id= :id", ['id' => $id])->fetchAll();
 
  if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $email = $_POST['email'];
+
+    $isUserExist = $db->query("SELECT email FROM users WHERE email='$email'");
+
+    if (!$isUserExist){    
 
     $firstname = $_POST['first_name'];
     $lastname = $_POST['last_name'];
-    $email = $_POST['email'];
     $streetaddress = $_POST['street_address'];
+    $role = $_POST['role']; 
     
+     $db->query("insert into users (first_name, last_name, email, street_address, role) values('$firstname', '$lastname', '$email', '$streetaddress', '$role')",);
+    }
 
-     $db->query("insert into users (first_name, last_name, email, street_address) values('$firstname', '$lastname', '$email', '$streetaddress')",);
-     
+    else{
+        echo ("User already exist please add a different user");
+        die();
+    }
  }
 
 require("views/note-create.view.php");
