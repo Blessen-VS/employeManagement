@@ -15,6 +15,12 @@
 
                 <span>Add Employee</span>
             </button>
+
+            <div class="col-md-12 head">
+    <div class="float-right">
+        <a href="controllers/export_controller.php" class="btn btn-success"><i class="dwn"></i> Export</a>
+    </div>
+</div>
         </div>
     </div> 
     <div class="flex flex-col mt-6">

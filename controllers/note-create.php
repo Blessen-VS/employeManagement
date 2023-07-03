@@ -21,7 +21,7 @@ $heading = "Create Employee";
     $role = $_POST['role']; 
     
      $db->query("insert into users (first_name, last_name, email, street_address, role) values('$firstname', '$lastname', '$email', '$streetaddress', '$role')",);
-    }
+    } 
 
     else{
         echo ("User already exist please add a different user");
