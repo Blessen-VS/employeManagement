@@ -8,12 +8,12 @@ $db = new Database($config['database']);
 $heading = "Users Listing";
 
 $userList = $db->query("select * from users")->fetchAll();
-$exportList = $db->query("select first_name, last_name, email, street_address from users")->fetchAll();
+
 
 
 
 if(isset($_POST["export_data"])) {	
- 	$filename = "user_data_export_".date('Ymd') . ".csv";			
+ 	$filename = "user2_data_export_".date('Ymd') . ".xls";			
  	header("Content-Type: application/vnd.ms-excel");
  	header("Content-Disposition: attachment; filename=\"$filename\"");	
  	$show_coloumn = false;
