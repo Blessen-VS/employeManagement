@@ -10,9 +10,8 @@ $heading = "Users Listing";
 $userList = $db->query("select * from users")->fetchAll();
 
 
-
-
-if(isset($_POST["export_data"])) {	
+if(isset($_POST["export_data"])) {
+		
  	$filename = "user2_data_export_".date('Ymd') . ".xls";			
  	header("Content-Type: application/vnd.ms-excel");
  	header("Content-Disposition: attachment; filename=\"$filename\"");	
@@ -28,6 +27,11 @@ if(isset($_POST["export_data"])) {
  	  }
  	}
  	exit;  
+ }
+
+ if(isset($_POST["delete_by_id"])) {
+	 $employeeId = $_POST['delete_by_id'];
+	$db->query("delete FROM users where id = $employeeId");
  }
 
 

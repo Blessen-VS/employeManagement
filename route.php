@@ -1,5 +1,5 @@
 <?php
-
+$id = 0;
 return [
     '/' => 'controllers/index.php',
     '/contact' => 'controllers/contact.php',
