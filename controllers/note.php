@@ -1,6 +1,6 @@
 <?php
 
-$config = require('config.php');
+$config = require base_path('config.php');
 $db = new Database($config['database']);
 
 $heading = "Note";
@@ -10,5 +10,5 @@ $notes = $db->query("select * from notes where id= :id", ['id' => $id])->fetchAl
 
 
 
-require("views/note.view.php");
+require view("note.view.php", ['heading' => 'Note']);
 ?>

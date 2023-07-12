@@ -1,12 +1,33 @@
 <?php
-$config = require('config.php');
+require base_path('Validator.php');
+$config = require base_path('config.php');
 $db = new Database($config['database']);
-$heading = "Create Employee";
 
 
 //$notes = $db->query("select * from notes where id= :id", ['id' => $id])->fetchAll();
 
  if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    $errors = [];
+
+    if(!Validator::string($_POST['email'])== 0){
+        $errors['email'] = 'Email is invalid';
+    }
+
+    if(!Validator::string($_POST['first_name']) == 0){
+        $errors['firstname'] = 'First name is required';
+    }
+
+    if(!Validator::string($_POST['last_name']) == 0){
+        $errors['lastname'] = 'Lastname is required';
+    }
+    if(!Validator::string($_POST['street_address']) == 0){
+        $errors['streetaddress'] = 'Street address is required';
+    }
+    
+    
+
+    if(empty($errors)){
 
     $email = $_POST['email'];
 
@@ -27,9 +48,12 @@ $heading = "Create Employee";
         echo ("User already exist please add a different user");
         die();
     }
+}
  }
 
-require("views/note-create.view.php");
+require view("note-create.view.php", [
+    'heading' => 'Create Employee',
+]);
 ?>
 
 <!-- [

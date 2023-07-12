@@ -1,11 +1,9 @@
 <?php
 
+$heading = 'Employee List';
 
-
-$config = require('config.php');
+$config = require base_path('config.php');
 $db = new Database($config['database']);
-
-$heading = "Users Listing";
 
 $userList = $db->query("select * from users")->fetchAll();
 
@@ -35,5 +33,5 @@ if(isset($_POST["export_data"])) {
  }
 
 
-require("views/notes.view.php");
+ require view("notes.view.php", ['heading' => 'Employee List',]);
 ?>
