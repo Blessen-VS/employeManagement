@@ -20,19 +20,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         
 
         $email = $_POST['email'];
+        $password = $_POST['password'];
     
-        $isUserExist = $db->query("SELECT email FROM users WHERE email='$email'");
+        $isUserExist = $db->query("SELECT * FROM users WHERE email = '$email' AND password = '$password' ")->fetchAll();
+
+        $userDetails = $isUserExist;
         
     
-        if ($isUserExist->rowCount() != 0 ){   
-            $heading = 'Home';
+        if ($userDetails[0]['role'] == "Manager"){   
+            $heading = 'Manager View';
+
+    
+            require view("about.view.php", ['heading' => '',]);
+        } 
+        if ($userDetails[0]['role'] == "Supervisor"){   
+            $heading = 'Supervisor View';
+
     
             require view("index.view.php", ['heading' => '',]);
         } 
     
-        else if ($isUserExist->rowCount() == 0 ){
+        else if (!$isUserExist){
     
-            $errors['loginerror'] =  'Invalid Credentials';
+            echo 'Invalid Credentials';
             die();
         }
     }
